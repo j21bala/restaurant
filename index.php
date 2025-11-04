@@ -5,8 +5,6 @@ include("admin/bd.php");
 include("admin/seccion/reservacion/reservas_logic.php");
 include("admin/seccion/stack/stack_logic.php");
 
-
-
 // 1. GESTIÓN DE LA MESA SELECCIONADA
 if (isset($_GET['mesa'])) {
     $mesa_url = intval($_GET['mesa']);
@@ -37,8 +35,6 @@ $listabanner = $conn->query("SELECT * FROM `banner` LIMIT 1")->fetchAll(PDO::FET
 $lista_colaboradores = $conn->query("SELECT * FROM `colaboradores`")->fetchAll(PDO::FETCH_ASSOC);
 $lista_testimonios = $conn->query("SELECT * FROM `testimonios`")->fetchAll(PDO::FETCH_ASSOC);
 $lista_menu = $conn->query("SELECT * FROM `menu`")->fetchAll(PDO::FETCH_ASSOC);
-
-
 
 ?>
 <!doctype html>
@@ -194,29 +190,6 @@ $lista_menu = $conn->query("SELECT * FROM `menu`")->fetchAll(PDO::FETCH_ASSOC);
                     <?php endforeach; ?>
                 </div>
             </div> 
-        </section>
-
-        <!-- ALGORITMO VORAZ DE CAMBIO -->
-        <section id="cambio-voraz" class="py-5 bg-light">
-            <div class="container">
-                <h2 class="text-center mb-4">Calculadora de Cambio</h2>
-                <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Cambio para un total de $<?= number_format($total_cambio, 2) ?></h5>
-                                <p class="card-text">Utilizando un algoritmo voraz, el cambio se distribuye de la siguiente manera:</p>
-                                <ul>
-                                    <?php foreach ($cambio as $denominacion => $cantidad): ?>
-                                        <li><strong>$<?= number_format((float)$denominacion, 2) ?>:</strong> <?= $cantidad ?> unidad(es)</li>
-                                    <?php endforeach; ?>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- SECCIÓN DE RESERVAS -->
